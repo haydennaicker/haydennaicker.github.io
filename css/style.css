@@ -413,3 +413,14 @@ footer p,
 footer a {
     color: white;
 }
+
+/* Construction */
+#construct {
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(../images/under-construction.png);
+    background-position: center;
+    background-size: cover;
+    display: grid;
+    place-content: center;
+    text-align: center;
+}
