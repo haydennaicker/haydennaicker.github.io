@@ -30,6 +30,8 @@ navLinksLi.forEach(li => li.addEventListener('click', ()=> {
 // Typed js
 var options = {
     strings: [
+        'Data Analyst',
+        'BI Specialist',
         'Fullstack Developer',
         'Cloud Developer',
         'Microsoft Certified Trainer'
