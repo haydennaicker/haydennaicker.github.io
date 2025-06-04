@@ -2,7 +2,7 @@
     var request = new XMLHttpRequest();
 
     // Set up the request
-    request.open("GET", "https://api.countapi.xyz/hit/example-portfolio.com/visits", true);
+    request.open("GET", "https://api.countapi.xyz/hit/https://haydennaicker.github.io/visits", true);
 
     // Define the function to run when the response is received
     request.onload = function() {
