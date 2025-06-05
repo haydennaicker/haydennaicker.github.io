@@ -1,5 +1,5 @@
 /* Google fonts */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,500;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
 /* Helpers & Reset */
 :root {
@@ -7,7 +7,7 @@
     --c-dark: #333;
     --c-body: rgba(255,255,255, 0.6);
     --c-light: #f8f8f8;
-    --f-base: sans-serif;
+    --f-base: 'Roboto', sans-serif;
     --n-height: 100px;
 }
 
@@ -367,7 +367,7 @@ footer p {
 .footer-link {
     color: var(--c-light);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 400;
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -416,7 +416,7 @@ footer p {
 .nav-link {
     color: white; /* same as existing nav links */
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 400;
     display: inline-flex;
     align-items: center;
     gap: 6px;
