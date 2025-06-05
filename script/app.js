@@ -38,8 +38,9 @@ var options = {
     ],
     loop: true,
     loopCount: Infinity,
-    typeSpeed: 0,
-    backDelay: 3500,
+    typeSpeed: 10,
+    backSpeed: 5,
+    backDelay: 2500,
   };
   
 var typed = new Typed('#hero-titles', options);
