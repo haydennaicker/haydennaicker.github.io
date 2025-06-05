@@ -10,12 +10,12 @@ window.addEventListener('scroll', () => {
     } else {
         navbar.classList.remove('scrolled')
     }
-})
+});
 
 hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('active')
     hamburger.classList.toggle('active')
-})
+});
 
 navLinksLi.forEach(li => li.addEventListener('click', ()=> {
     navLinksLi.forEach(li => li.classList.remove('active'))
@@ -24,7 +24,7 @@ navLinksLi.forEach(li => li.addEventListener('click', ()=> {
     hamburger.classList.remove('active')
     navLinks.classList.remove('active')
 
-}))
+}));
 
 
 // Typed js
@@ -47,17 +47,3 @@ var typed = new Typed('#hero-titles', options);
 // AOS
 AOS.init();
 
-
-// emailJS send button function
-function SendMail() {
-    emailjs.send("service_yc4hdkj", "template_w6gujsm",{
-        from_name : document.getElementById("name").value,
-        from_email : document.getElementById("email").value,
-        message : document.getElementById("message").value,
-    })
-    setTimeout(() => {
-        document.getElementById("name").value = "";
-        document.getElementById("email").value = "";
-        document.getElementById("message").value = "Message Sent!";
-    }, 2000);
-}

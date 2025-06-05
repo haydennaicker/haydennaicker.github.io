@@ -335,57 +335,6 @@ section {
     transform:scale(1.5);
 }
 
-/* contact */
-#contact .grid {
-    grid-template-columns: 1fr 2.5fr;
-}
-
-@media (max-width: 768px) {
-    #contact .grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-form {
-    width: 100%;
-}
-
-.contact-widget {
-    margin-bottom: 44px;
-}
-
-.form-group {
-    margin-bottom: 24px;
-}
-
-.form-group .form-input {
-    display: block;
-    width: 100%;
-    padding: 16px 0;
-    border-radius: 5px;
-    border: none;
-    font-family: var(--f-base);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.form-group .form-input:focus {
-    outline: none;
-}
-
-.form-input {
-    background-color: var(--c-dark);
-}
-
-input {
-    color: white;
-    text-align: center;
-}
-
-textarea {
-  color: white;
-  text-align: center;
-}
-
 /* center placeholder text*/
 ::-webkit-input-placeholder {
   text-align: center;
@@ -401,18 +350,44 @@ textarea {
 footer {
     padding: 60px 0;
     background-color: var(--c-dark);
+    color: var(--c-light);
+    text-align: center;
 }
 
 footer .container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
 }
 
-footer p,
-footer a {
-    color: white;
+footer p {
+    margin: 0.5em 0;
 }
+
+.footer-link {
+    color: var(--c-light);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
+}
+
+.footer-link i {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+/* Animate icon on hover */
+.footer-link:hover {
+    color: var(--c-brand);
+}
+
+.footer-link:hover i {
+    transform: rotate(15deg) scale(1.2);
+}
+
 
 /* Construction */
 #construct {
@@ -434,4 +409,33 @@ footer a {
 #gif-section img {
     max-width: 100%;
     height: auto;
+}
+
+
+
+/* Nav link style with animated icons */
+.nav-link {
+    color: white; /* same as existing nav links */
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.3s ease;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-link i {
+    font-size: 14px;
+    transition: transform 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--c-brand);
+}
+
+.nav-link:hover i {
+    transform: rotate(15deg) scale(1.2);
 }
