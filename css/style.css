@@ -27,6 +27,17 @@ body {
     line-height: 1.8;
     font-weight: 400;
     background-color: rgb(34, 34, 34);
+    cursor: url("../images/customCursor.png"), auto;
+}
+
+/* Prevent default cursor change on links */
+a, button, input, textarea, .interactive-element {
+    cursor: url("../images/customCursor.png"), auto;
+}
+
+/* Other elements that are interactive */
+a:hover, button:hover, input:hover, textarea:hover, .interactive-element:hover {
+    cursor: url("../images/customCursor.png"), auto;
 }
 
 h1,h2,h3,h4,h5,h6 {
