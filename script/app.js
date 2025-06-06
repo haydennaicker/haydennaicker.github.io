@@ -45,15 +45,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function printLine() {
     if (i < lines.length) {
-      terminal.innerHTML += (i > 0 ? "\n" : "") + lines[i];
-      terminal.scrollTop = terminal.scrollHeight; // auto-scroll if needed
+      const div = document.createElement("div");
+      div.innerHTML = lines[i];
+      terminal.appendChild(div);
+      terminal.scrollTop = terminal.scrollHeight;
+
+      // Longer delay after the first line
+      const delay = (i === 0) ? 2000 : 800;
+
       i++;
-      setTimeout(printLine, 1000);
+      setTimeout(printLine, delay);
     }
   }
 
   printLine();
 });
+
+
+// Typed js
+var options = {
+  strings: ['Hayden Naicker'],
+  typeSpeed: 50,
+  showCursor: true,
+  onComplete: function(self) {
+    setTimeout(() => {
+      self.cursor.remove(); // or self.cursor.style.display = 'none';
+    }, 1500); // wait 2 seconds (2000 ms)
+  }
+};
+  
+var typed = new Typed('#hero-titles', options);
+
 
 
 // AOS
