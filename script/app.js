@@ -27,23 +27,34 @@ navLinksLi.forEach(li => li.addEventListener('click', ()=> {
 }));
 
 
-// Typed js
-var options = {
-    strings: [
-        'Data Analyst',
-        'BI Specialist',
-        'Fullstack Developer',
-        'Cloud Developer',
-        'Microsoft Certified Trainer'
-    ],
-    loop: true,
-    loopCount: Infinity,
-    typeSpeed: 10,
-    backSpeed: 5,
-    backDelay: 2500,
-  };
-  
-var typed = new Typed('#hero-titles', options);
+document.addEventListener("DOMContentLoaded", () => {
+  const lines = [
+    "<span class='terminal-colour'>haydennaicker:~$</span> Scanning profile...            ",
+    "<span class='terminal-colour'>haydennaicker:~$</span>                                ",
+    "<span class='terminal-colour'>haydennaicker:~$</span>   → Data Analyst               ",
+    "<span class='terminal-colour'>haydennaicker:~$</span>   → BI Specialist              ",
+    "<span class='terminal-colour'>haydennaicker:~$</span>   → Fullstack Developer        ",
+    "<span class='terminal-colour'>haydennaicker:~$</span>   → Cloud Developer            ",
+    "<span class='terminal-colour'>haydennaicker:~$</span>   → Microsoft Certified Trainer",
+    "<span class='terminal-colour'>haydennaicker:~$</span>                                ",
+    "<span class='terminal-colour'>haydennaicker:~$</span> Launching interface...         "
+  ];
+
+  const terminal = document.getElementById("terminal-output");
+  let i = 0;
+
+  function printLine() {
+    if (i < lines.length) {
+      terminal.innerHTML += (i > 0 ? "\n" : "") + lines[i];
+      terminal.scrollTop = terminal.scrollHeight; // auto-scroll if needed
+      i++;
+      setTimeout(printLine, 1000);
+    }
+  }
+
+  printLine();
+});
+
 
 // AOS
 AOS.init();

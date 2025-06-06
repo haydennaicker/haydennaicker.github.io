@@ -231,16 +231,12 @@ section {
 /* Hero */
 #hero {
     min-height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(../images/hero-1.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(4, 217, 255, 0.1)), url(../images/hero-1.jpg);
     background-position: center;
     background-size: cover;
     display: grid;
     place-content: center;
     text-align: center;
-}
-
-#hero h1 {
-    color: white;
 }
 
 /* Section title */
@@ -448,4 +444,41 @@ footer p {
 
 .nav-link:hover i {
     transform: rotate(15deg) scale(1.2);
+}
+
+
+/* terminal */
+.terminal-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.terminal-text {
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px var(--c-brand);
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-width: 100%;
+  width: 100%;
+  max-width: 800px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 600px) {
+  .terminal-text {
+    font-size: 0.875rem;
+    padding: 0.75rem;
+  }
+}
+
+.terminal-colour {
+  color: var(--c-brand);
 }
