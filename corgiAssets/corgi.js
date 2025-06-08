@@ -98,14 +98,14 @@ function updateEnergyBar() {
 function updateHeartPosition() {
   if (heartVisible) {
     heart.style.left = `${x + spriteSize / 2 - 15}px`;
-    heart.style.top = `${y - 40}px`;
+    heart.style.top = `${y - 10}px`;
   }
 
   energyBarContainer.style.left = `${x + spriteSize / 2 - 50}px`;
-  energyBarContainer.style.top = `${y - 20}px`;
+  energyBarContainer.style.top = `${y + 0}px`;
 
   energyIcon.style.left = `${x + spriteSize / 2 + 50}px`; // icon right of energy bar
-  energyIcon.style.top = `${y - 34}px`;
+  energyIcon.style.top = `${y - 15}px`;
 }
 
 // === POOP ===
