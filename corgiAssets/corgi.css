@@ -10,7 +10,8 @@
 
 /* Corgi Box - Responsive Square Container */
 #corgi-box {
-    background-color: var(--c-brand);
+    /* background-color: var(--c-brand); */
+    background: url(grass.jpg);
     position: relative;
     width: 100%;
     padding-bottom: 100%; /* Maintains square aspect ratio */
