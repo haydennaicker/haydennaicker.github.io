@@ -29,16 +29,16 @@ navLinksLi.forEach(li => li.addEventListener('click', ()=> {
 
 document.addEventListener("DOMContentLoaded", () => {
   const lines = [
-    "<span class='terminal-colour'>haydennaicker:~$</span> Scanning profile...            ",
-    "<span class='terminal-colour'>haydennaicker:~$</span>                                ",
-    "<span class='terminal-colour'>haydennaicker:~$</span>   → Data Analyst               ",
-    "<span class='terminal-colour'>haydennaicker:~$</span>   → BI Specialist              ",
-    "<span class='terminal-colour'>haydennaicker:~$</span>   → Fullstack Developer        ",
-    "<span class='terminal-colour'>haydennaicker:~$</span>   → Cloud Developer            ",
+    "<span class='terminal-colour'>haydennaicker:~$</span> Scanning profile...",
+    "<span class='terminal-colour'>haydennaicker:~$</span> ",
+    "<span class='terminal-colour'>haydennaicker:~$</span>   → Data Analyst",
+    "<span class='terminal-colour'>haydennaicker:~$</span>   → BI Specialist",
+    "<span class='terminal-colour'>haydennaicker:~$</span>   → Fullstack Developer",
+    "<span class='terminal-colour'>haydennaicker:~$</span>   → Cloud Developer",
     "<span class='terminal-colour'>haydennaicker:~$</span>   → Microsoft Certified Trainer",
-    "<span class='terminal-colour'>haydennaicker:~$</span>                                ",
-    "<span class='terminal-colour'>haydennaicker:~$</span> Launching interface...         ",
-    "<span class='terminal-colour'>haydennaicker:~$</span> Scroll to continue...          "
+    "<span class='terminal-colour'>haydennaicker:~$</span> ",
+    "<span class='terminal-colour'>haydennaicker:~$</span> Launching interface...",
+    "<span class='terminal-colour'>haydennaicker:~$</span> Scroll to continue..."
   ];
 
   const terminal = document.getElementById("terminal-output");
