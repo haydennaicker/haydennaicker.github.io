@@ -21,11 +21,11 @@ const directions = {
 
 let heartVisible = false;
 let heartTimeout;
-let hunger = 100;
-const hungerDepleteRate = 0.05;
+let energy = 100;
+const energyDepleteRate = 0.05;
 
-const hungerBarContainer = document.getElementById('hunger-bar-container');
-const hungerBar = document.getElementById('hunger-bar');
+const energyBarContainer = document.getElementById('energy-bar-container');
+const energyBar = document.getElementById('energy-bar');
 
 let corgiClickCount = 0;
 
@@ -81,15 +81,15 @@ function changeDirection() {
   direction = randomDirection();
 }
 
-function updateHungerBar() {
+function updateEnergyBar() {
   if (paused) return;
 
-  hunger = Math.max(0, hunger - hungerDepleteRate);
-  hungerBar.style.width = `${hunger}%`;
+  energy = Math.max(0, energy - energyDepleteRate);
+  energyBar.style.width = `${energy}%`;
 
-  if (hunger <= 0 && !paused) {
+  if (energy <= 0 && !paused) {
     paused = true;
-    corgi.classList.add('dead');
+    corgi.classList.add('sleep');
   }
 }
 
@@ -99,8 +99,8 @@ function updateHeartPosition() {
     heart.style.top = `${y - 40}px`;
   }
 
-  hungerBarContainer.style.left = `${x + spriteSize / 2 - 50}px`;
-  hungerBarContainer.style.top = `${y - 20}px`;
+  energyBarContainer.style.left = `${x + spriteSize / 2 - 50}px`;
+  energyBarContainer.style.top = `${y - 20}px`;
 }
 
 // === POOP ===
@@ -159,12 +159,12 @@ corgi.addEventListener('click', () => {
     heartVisible = false;
   }, 800);
 
-  hunger = 100;
-  hungerBar.style.width = `100%`;
+  energy = 100;
+  energyBar.style.width = `100%`;
 
   if (paused) {
     paused = false;
-    corgi.classList.remove('dead');
+    corgi.classList.remove('sleep');
   }
 });
 
@@ -177,7 +177,7 @@ gameLoop();
 function gameLoop() {
   if (!paused) {
     moveCorgi();
-    updateHungerBar();
+    updateEnergyBar();
   }
 
   updateHeartPosition();

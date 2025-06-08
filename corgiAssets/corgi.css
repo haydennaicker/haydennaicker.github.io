@@ -57,8 +57,8 @@
 }
 
 
-/* Hunger Bar Container */
-#hunger-bar-container {
+/* energy Bar Container */
+#energy-bar-container {
   position: absolute;
   width: 100px;
   height: 10px;
@@ -71,15 +71,15 @@
   overflow: hidden;
 }
 
-/* Hunger Bar Fill */
-#hunger-bar {
+/* energy Bar Fill */
+#energy-bar {
   height: 100%;
   width: 100%;
   background-color: var(--c-brand);
   transition: width 0.2s ease;
 }
 
-#corgi.dead {
+#corgi.sleep {
   transform: rotate(180deg);
 }
 
