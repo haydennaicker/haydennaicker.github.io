@@ -1,13 +1,15 @@
+let paused = false;
+
 const corgi = document.getElementById('corgi');
-const corgiBox = document.getElementById('corgi-box'); // The container div
-const heart = document.getElementById('heart'); // moved here for clarity
+const corgiBox = document.getElementById('corgi-box');
+const heart = document.getElementById('heart');
 
 const spriteSize = 160;
 let x = 100;
 let y = 100;
 let direction = 'down';
 let frame = 0;
-let frameDelay = 5; // How many loops before the frame updates
+let frameDelay = 5;
 let frameCount = 0;
 
 const directions = {
@@ -17,15 +19,27 @@ const directions = {
   up: 3
 };
 
-let heartVisible = false; // Track if heart is visible
+let heartVisible = false;
 let heartTimeout;
+let hunger = 100;
+const hungerDepleteRate = 0.05;
 
+const hungerBarContainer = document.getElementById('hunger-bar-container');
+const hungerBar = document.getElementById('hunger-bar');
+
+let corgiClickCount = 0;
+
+const maxPoops = 10;
+const poops = []; // array to track poop divs
+
+// === SPRITE ===
 function updateSprite() {
   corgi.style.backgroundPosition = `-${frame * spriteSize}px -${directions[direction] * spriteSize}px`;
 }
 
+// === MOVEMENT ===
 function moveCorgi() {
-  // Determine movement
+  if (paused) return;
   let newX = x;
   let newY = y;
 
@@ -36,82 +50,137 @@ function moveCorgi() {
     case 'right': newX += 1.5; break;
   }
 
-  // Get the boundaries of the corgi-box
   const boxRect = corgiBox.getBoundingClientRect();
   const maxX = boxRect.width - spriteSize;
   const maxY = boxRect.height - spriteSize;
 
-  // Check for boundaries and change direction if necessary
   if (newX <= 0 || newX >= maxX || newY <= 0 || newY >= maxY) {
-    changeDirection(); // Change direction immediately if hitting a boundary
+    changeDirection();
   }
 
-  // Clamp position within the corgi-box boundaries
   x = Math.max(0, Math.min(newX, maxX));
   y = Math.max(0, Math.min(newY, maxY));
 
   corgi.style.top = `${y}px`;
   corgi.style.left = `${x}px`;
 
-  // Update frame only after a delay
   frameCount++;
   if (frameCount >= frameDelay) {
     frameCount = 0;
-    frame = (frame + 1) % 4; // Cycle through 4 frames
+    frame = (frame + 1) % 4;
     updateSprite();
   }
 }
 
 function randomDirection() {
   const directionsArray = ['down', 'up', 'left', 'right'];
-  const randomIndex = Math.floor(Math.random() * directionsArray.length);
-  return directionsArray[randomIndex];
+  return directionsArray[Math.floor(Math.random() * directionsArray.length)];
 }
 
 function changeDirection() {
   direction = randomDirection();
 }
 
-// Update heart position to follow corgi if visible
+function updateHungerBar() {
+  if (paused) return;
+
+  hunger = Math.max(0, hunger - hungerDepleteRate);
+  hungerBar.style.width = `${hunger}%`;
+
+  if (hunger <= 0 && !paused) {
+    paused = true;
+    corgi.classList.add('dead');
+  }
+}
+
 function updateHeartPosition() {
   if (heartVisible) {
     heart.style.left = `${x + spriteSize / 2 - 15}px`;
     heart.style.top = `${y - 40}px`;
   }
+
+  hungerBarContainer.style.left = `${x + spriteSize / 2 - 50}px`;
+  hungerBarContainer.style.top = `${y - 20}px`;
 }
 
-// Randomly change direction every 2 seconds
-setInterval(changeDirection, 2000); // Change direction every 2 seconds
+// === POOP ===
+function dropPoop() {
+  console.log("💩 dropPoop() called");
 
-// Initially set a random direction
-direction = randomDirection();
+  const newPoop = document.createElement('div');
+  newPoop.classList.add('poop');
+  newPoop.style.position = 'absolute';
+  newPoop.style.left = `${x + spriteSize / 2 - 16}px`;
+  newPoop.style.top = `${y + spriteSize - 10}px`;
+  newPoop.style.width = '32px';
+  newPoop.style.height = '32px';
+  newPoop.style.backgroundSize = 'contain';
+  newPoop.style.backgroundRepeat = 'no-repeat';
+  newPoop.style.cursor = 'pointer';
+  newPoop.style.zIndex = 8;
 
-function gameLoop() {
-  moveCorgi();
+  corgiBox.appendChild(newPoop);
+  poops.push(newPoop);
 
-  // Update heart position if visible
-  if (heartVisible) updateHeartPosition();
+  if (poops.length > maxPoops) {
+    const oldestPoop = poops.shift();
+    corgiBox.removeChild(oldestPoop);
+  }
 
-  requestAnimationFrame(gameLoop);
+  newPoop.addEventListener('click', () => {
+    corgiBox.removeChild(newPoop);
+    const index = poops.indexOf(newPoop);
+    if (index > -1) poops.splice(index, 1);
+  });
+
+  console.log(`Poop dropped at (${newPoop.style.left}, ${newPoop.style.top}), total poops: ${poops.length}`);
 }
 
-updateSprite();
-gameLoop();
-
+// === CORGI INTERACTION ===
 corgi.addEventListener('click', () => {
-  // Spin
-  corgi.classList.add('spin');
-  setTimeout(() => corgi.classList.remove('spin'), 500);
+  corgiClickCount++;
+  console.log("Corgi clicked", corgiClickCount, "time(s)");
 
-  // Show heart and make it follow the corgi
+  if (corgiClickCount % 2 === 0) {
+    dropPoop();
+  }
+
+  if (!paused) {
+    corgi.classList.add('spin');
+    setTimeout(() => corgi.classList.remove('spin'), 500);
+  }
+
   heartVisible = true;
   heart.style.opacity = 1;
   updateHeartPosition();
 
-  // Hide heart after delay
   clearTimeout(heartTimeout);
   heartTimeout = setTimeout(() => {
     heart.style.opacity = 0;
     heartVisible = false;
   }, 800);
+
+  hunger = 100;
+  hungerBar.style.width = `100%`;
+
+  if (paused) {
+    paused = false;
+    corgi.classList.remove('dead');
+  }
 });
+
+// === INIT ===
+setInterval(changeDirection, 2000);
+direction = randomDirection();
+updateSprite();
+gameLoop();
+
+function gameLoop() {
+  if (!paused) {
+    moveCorgi();
+    updateHungerBar();
+  }
+
+  updateHeartPosition();
+  requestAnimationFrame(gameLoop);
+}

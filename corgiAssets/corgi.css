@@ -10,7 +10,7 @@
 
 /* Corgi Box - Responsive Square Container */
 #corgi-box {
-    background-color: #c6c6c4;
+    background-color: var(--c-brand);
     position: relative;
     width: 100%;
     padding-bottom: 100%; /* Maintains square aspect ratio */
@@ -27,6 +27,9 @@
     background-repeat: no-repeat;
     top: 100px;
     left: 100px;
+    transform-origin: center center;
+    transition: transform 0.3s ease;
+    z-index: 20;
 }
 
 /* Heart Image */
@@ -50,3 +53,44 @@
 #corgi.spin {
   animation: spin 0.5s ease-in-out;
 }
+
+
+/* Hunger Bar Container */
+#hunger-bar-container {
+  position: absolute;
+  width: 100px;
+  height: 10px;
+  background-color: var(--c-dark);
+  border: 1px solid var(--c-dark);
+  top: 80px; /* initially above the corgi */
+  left: 100px;
+  z-index: 5;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Hunger Bar Fill */
+#hunger-bar {
+  height: 100%;
+  width: 100%;
+  background-color: var(--c-body);
+  transition: width 0.2s ease;
+}
+
+#corgi.dead {
+  transform: rotate(180deg);
+}
+
+.poop {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background-image: url('poop.png'); /* Replace with your poop PNG path */
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  z-index: 8;
+}
+
+
+
