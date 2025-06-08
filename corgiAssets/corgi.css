@@ -94,4 +94,12 @@
   z-index: 7;
 }
 
+#energy-icon {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 20;
+}
 

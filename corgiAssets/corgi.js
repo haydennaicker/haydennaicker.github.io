@@ -3,6 +3,7 @@ let paused = false;
 const corgi = document.getElementById('corgi');
 const corgiBox = document.getElementById('corgi-box');
 const heart = document.getElementById('heart');
+const energyIcon = document.getElementById('energy-icon');
 
 const spriteSize = 160;
 let x = 100;
@@ -30,7 +31,7 @@ const energyBar = document.getElementById('energy-bar');
 let corgiClickCount = 0;
 
 const maxPoops = 10;
-const poops = []; // array to track poop divs
+const poops = [];
 
 // === SPRITE ===
 function updateSprite() {
@@ -40,6 +41,7 @@ function updateSprite() {
 // === MOVEMENT ===
 function moveCorgi() {
   if (paused) return;
+
   let newX = x;
   let newY = y;
 
@@ -101,6 +103,9 @@ function updateHeartPosition() {
 
   energyBarContainer.style.left = `${x + spriteSize / 2 - 50}px`;
   energyBarContainer.style.top = `${y - 20}px`;
+
+  energyIcon.style.left = `${x + spriteSize / 2 + 50}px`; // icon right of energy bar
+  energyIcon.style.top = `${y - 34}px`;
 }
 
 // === POOP ===
@@ -178,6 +183,9 @@ function gameLoop() {
   if (!paused) {
     moveCorgi();
     updateEnergyBar();
+    energyIcon.style.backgroundImage = "url('../corgiAssets/energy.png')";
+  } else {
+    energyIcon.style.backgroundImage = "url('../corgiAssets/sleep.png')";
   }
 
   updateHeartPosition();
