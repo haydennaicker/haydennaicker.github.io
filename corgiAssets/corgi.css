@@ -31,6 +31,7 @@
     transform-origin: center center;
     transition: transform 0.3s ease;
     z-index: 20;
+    cursor: url('biscuit.png') 0 0, auto !important;
 }
 
 /* Heart Image */
@@ -89,9 +90,8 @@
   background-image: url('poop.png'); /* Replace with your poop PNG path */
   background-size: contain;
   background-repeat: no-repeat;
-  cursor: pointer;
+  cursor: url('shovel.png') 0 0, auto !important;
   z-index: 7;
 }
-
 
 

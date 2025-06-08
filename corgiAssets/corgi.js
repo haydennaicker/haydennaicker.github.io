@@ -116,7 +116,6 @@ function dropPoop() {
   newPoop.style.height = '32px';
   newPoop.style.backgroundSize = 'contain';
   newPoop.style.backgroundRepeat = 'no-repeat';
-  newPoop.style.cursor = 'pointer';
   newPoop.style.zIndex = 8;
 
   corgiBox.appendChild(newPoop);
