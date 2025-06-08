@@ -236,7 +236,6 @@ section {
     background-size: cover;
     display: grid;
     place-content: center;
-    text-align: center;
 }
 
 /* Section title */
