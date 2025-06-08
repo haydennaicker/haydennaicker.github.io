@@ -110,8 +110,6 @@ function updateHeartPosition() {
 
 // === POOP ===
 function dropPoop() {
-  console.log("💩 dropPoop() called");
-
   const newPoop = document.createElement('div');
   newPoop.classList.add('poop');
   newPoop.style.position = 'absolute';
@@ -136,14 +134,11 @@ function dropPoop() {
     const index = poops.indexOf(newPoop);
     if (index > -1) poops.splice(index, 1);
   });
-
-  console.log(`Poop dropped at (${newPoop.style.left}, ${newPoop.style.top}), total poops: ${poops.length}`);
 }
 
 // === CORGI INTERACTION ===
 corgi.addEventListener('click', () => {
   corgiClickCount++;
-  console.log("Corgi clicked", corgiClickCount, "time(s)");
 
   if (corgiClickCount % 2 === 0) {
     dropPoop();
