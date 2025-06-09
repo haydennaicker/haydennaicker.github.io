@@ -1,10 +1,10 @@
-let paused = false;
+let paused = true;  // Start paused
 let score = 0;
 let speedMultiplier = 1;
 let energyDepletionRateMultiplier = 1;
 let highScore = 0;
 
-const highScoreDisplay = document.getElementById('high-score'); // You need this in HTML
+const highScoreDisplay = document.getElementById('high-score');
 const corgi = document.getElementById('corgi');
 const corgiBox = document.getElementById('corgi-box');
 const heart = document.getElementById('heart');
@@ -28,7 +28,7 @@ const directions = {
 
 let heartVisible = false;
 let heartTimeout;
-let energy = 100;
+let energy = 0;  // Start empty energy bar
 const energyDepleteRate = 0.05;
 
 const energyBarContainer = document.getElementById('energy-bar-container');
@@ -140,7 +140,7 @@ function dropPoop() {
   }
 
   newPoop.addEventListener('click', () => {
-    if (paused) return; // Prevent picking up poop when game is over
+    if (paused) return;
 
     corgiBox.removeChild(newPoop);
     const index = poops.indexOf(newPoop);
@@ -149,8 +149,7 @@ function dropPoop() {
     score = Math.max(0, score);
     updateScore();
     createFloatingText('+100', parseInt(newPoop.style.left), parseInt(newPoop.style.top), true);
-});
-
+  });
 }
 
 // === SCORING SYSTEM ===
@@ -161,7 +160,6 @@ function updateScore() {
     highScoreDisplay.innerText = `High Score: ${highScore}`;
   }
 }
-
 
 // === GAME OVER ===
 function gameOver() {
@@ -178,7 +176,6 @@ function resetGame() {
   speedMultiplier = 1;
   energyDepletionRateMultiplier = 1;
 
-  // Remove all poops from DOM
   poops.forEach(poop => {
     if (poop.parentNode) {
       corgiBox.removeChild(poop);
@@ -228,10 +225,8 @@ corgi.addEventListener('click', () => {
   energy = 100;
   energyBar.style.width = `100%`;
 
-  if (!paused) {
-    corgi.classList.add('spin');
-    setTimeout(() => corgi.classList.remove('spin'), 500);
-  }
+  corgi.classList.add('spin');
+  setTimeout(() => corgi.classList.remove('spin'), 500);
 
   heartVisible = true;
   heart.style.opacity = 1;
@@ -252,6 +247,15 @@ corgi.addEventListener('click', () => {
 setInterval(changeDirection, 2000);
 direction = randomDirection();
 updateSprite();
+
+// Start with Ollie sleeping, empty energy bar, sleep icon visible
+corgi.classList.add('sleep');
+corgi.classList.add('rotate');
+energy = 0;
+energyBar.style.width = '0%';
+energyIcon.style.backgroundImage = "url('../corgiAssets/sleep.png')";
+
+// Start game loop (runs but no movement/energy decrease while paused)
 gameLoop();
 
 function gameLoop() {
@@ -269,15 +273,13 @@ function gameLoop() {
 
 const toggleButton = document.getElementById('toggle-rules');
 const rules = document.getElementById('game-rules');
-const icon = toggleButton.querySelector('i');
 
 toggleButton.addEventListener('click', () => {
-    rules.classList.toggle('visible');
+  rules.classList.toggle('visible');
 
-    if (rules.classList.contains('visible')) {
-        toggleButton.innerHTML = '<i class="las la-chevron-circle-up"></i> Hide Rules';
-    } else {
-        toggleButton.innerHTML = '<i class="las la-chevron-circle-down"></i> Show Rules';
-    }
+  if (rules.classList.contains('visible')) {
+    toggleButton.innerHTML = '<i class="las la-chevron-circle-up"></i> Hide Rules';
+  } else {
+    toggleButton.innerHTML = '<i class="las la-chevron-circle-down"></i> Show Rules';
+  }
 });
-
