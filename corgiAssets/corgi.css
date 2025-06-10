@@ -182,7 +182,7 @@
 
 #toggle-rules {
     display: inline-block;
-    background-color: var(--c-dark);
+    background-color: transparent;
     font-family: var(--f-base);
     padding: 10px 15px;
     transition: all 0.4s ease-in-out;
@@ -197,7 +197,6 @@
 #toggle-rules:hover {
     background-color: transparent;
     color: var(--c-brand);
-    border: 1px solid var(--c-brand)
 }
 
 #toggle-rules i {
@@ -206,5 +205,5 @@
 }
 
 #toggle-rules:hover i {
-    transform: rotate(360deg) scale(1.2);
+    transform: rotate(90deg) scale(1.2);
 }

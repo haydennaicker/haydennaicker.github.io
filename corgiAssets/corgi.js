@@ -278,8 +278,8 @@ toggleButton.addEventListener('click', () => {
   rules.classList.toggle('visible');
 
   if (rules.classList.contains('visible')) {
-    toggleButton.innerHTML = '<i class="las la-chevron-circle-up"></i> Hide Rules';
+    toggleButton.innerHTML = '<i class="las la-chevron-circle-left"></i> Hide Rules';
   } else {
-    toggleButton.innerHTML = '<i class="las la-chevron-circle-down"></i> Show Rules';
+    toggleButton.innerHTML = '<i class="las la-chevron-circle-right"></i> Show Rules';
   }
 });
