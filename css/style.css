@@ -300,7 +300,11 @@ section {
     position: relative;
     overflow: hidden;
     border-radius: 5px;
-    background-color: var(--c-dark)
+    background-color: var(--c-dark);
+}
+
+.project:hover {
+    border: solid 1px var(--c-brand);
 }
 
 .project img {
@@ -392,18 +396,6 @@ footer p {
 
 .footer-link:hover i {
     transform: rotate(15deg) scale(1.2);
-}
-
-
-/* Construction */
-#construct {
-    min-height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(../images/under-construction.png);
-    background-position: center;
-    background-size: cover;
-    display: grid;
-    place-content: center;
-    text-align: center;
 }
 
 
